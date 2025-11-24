@@ -1,4 +1,4 @@
-ARG ALPINE_VERSION=3.19.4
+ARG ALPINE_VERSION=3.19.9
 FROM alpine:${ALPINE_VERSION}
 
 ENV ZPUSH_VERSION=2.7.5
@@ -42,24 +42,24 @@ RUN apk update && apk add --no-cache \
     less \
     nano \
     nginx \
-    php81 \
-    php81-cli \
-    php81-curl \
-    php81-fpm \
-    php81-iconv \
-    php81-imap \
-    php81-intl \
-    php81-ldap \
-    php81-mbstring \
-    php81-opcache \
-    php81-openssl \
-    php81-sysvsem \
-    php81-sysvshm \
-    php81-pcntl \
-    php81-pdo \
-    php81-posix \
-    php81-soap \
-    php81-simplexml \
+    php${PHP_VERSION} \
+    php${PHP_VERSION}-cli \
+    php${PHP_VERSION}-curl \
+    php${PHP_VERSION}-fpm \
+    php${PHP_VERSION}-iconv \
+    php${PHP_VERSION}-imap \
+    php${PHP_VERSION}-intl \
+    php${PHP_VERSION}-ldap \
+    php${PHP_VERSION}-mbstring \
+    php${PHP_VERSION}-opcache \
+    php${PHP_VERSION}-openssl \
+    php${PHP_VERSION}-sysvsem \
+    php${PHP_VERSION}-sysvshm \
+    php${PHP_VERSION}-pcntl \
+    php${PHP_VERSION}-pdo \
+    php${PHP_VERSION}-posix \
+    php${PHP_VERSION}-soap \
+    php${PHP_VERSION}-simplexml \
     tzdata
 
 # ----------------------------------------

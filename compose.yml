@@ -3,7 +3,7 @@ services:
     image: kour1er/z-push
     container_name: z-push
     volumes:
-      - ./zp_state:/var/lib/z-push
+      - zp_state:/var/lib/z-push
     environment:
       - BACKEND_PROVIDER=BackendIMAP
       - FULLEMAIL=true
