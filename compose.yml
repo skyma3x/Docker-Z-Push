@@ -1,6 +1,6 @@
 services:
   z-push:
-    image: kour1er/z-push
+    image: skyma3x/z-push
     container_name: z-push
     volumes:
       - zp_state:/var/lib/z-push
