@@ -1,6 +1,8 @@
 # Docker-Z-Push
 A Docker container for Z-Push, tested against [Docker-Mailserver](https://github.com/docker-mailserver/docker-mailserver).
 
+Forked from [kour1er/Docker-Z-Push](https://github.com/kour1er/Docker-Z-Push) to add support for IMAP_OPTIONS and SMTP relay (see compose.yml for example configuration). SMTP relay is disabled by default.
+
 If you are running Dovecot with auth_username_format = %Lu (i.e. login with full email address) you may experience credential issues on ios. For more details on this, see [here](https://github.com/Z-Hub/Z-Push/issues/127). As a workaround, you could set auth_default_realm to your domain to resolve this. Restarting your iOS device may also help.
 
 Logging has been altered. Rather than writing to a text file, log information goes directly to stdout.

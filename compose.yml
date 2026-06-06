@@ -14,8 +14,13 @@ services:
       - IMAP_FOLDER_SPAM='Junk'
       - IMAP_FOLDER_TRASH='Trash'
       - IMAP_PORT=993
-      - IMAP_SERVER_METHOD=smtp
       - IMAP_SERVER=example.com
+      - IMAP_SMTP_ENABLED=true
+      - IMAP_SMTP_SERVER=tcp://localhost
+      - IMAP_SMTP_PORT=25
+      - IMAP_SMTP_AUTH=true
+      - IMAP_SMTP_USERNAME=example
+      - IMAP_SMTP_PASSWORD=example
       - LDAP_DOMAIN=dc=example,dc=com
       - LDAP_ENABLED=false
       - LDAP_PASSWORD=password
@@ -29,7 +34,6 @@ services:
       - PING_INTERVAL=30
       - PING_LOWER_BOUND_LIFETIME=false
       - RETRY_AFTER_DELAY=300
-      - SMTP_PORT=587
       - TIMEZONE='Europe/London'
       - TZ=Europe/London
       - ZPUSH_HOST=zpush.example.com

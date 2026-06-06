@@ -33,9 +33,31 @@ sed -i \
     -e "s|('IMAP_PORT', 143)|('IMAP_PORT', ${IMAP_PORT})|" \
     -e "s|('IMAP_OPTIONS', '/notls/norsh')|('IMAP_OPTIONS', ${IMAP_OPTIONS})|" \
     -e "s|('IMAP_FOLDER_CONFIGURED', false)|('IMAP_FOLDER_CONFIGURED', true)|" \
-    -e "s|('IMAP_SMTP_METHOD', 'mail')|('IMAP_SMTP_METHOD', 'smtp')|" \
-    -e "s|imap_smtp_params = array()|imap_smtp_params = array('host'=>'tcp://${IMAP_SERVER}','port'=>${SMTP_PORT},'auth'=>true,'username'=>'imap_username','password'=>'imap_password')|" \
     "$IMAP_CONFIG_FILE"
+
+if [ "$IMAP_SMTP_ENABLED" = true ]
+then
+# Update backend imap config file for SMTP
+    echo "IMAP SMTP enabled"
+    sed -i \
+        -e "s|('IMAP_SMTP_METHOD', 'mail')|('IMAP_SMTP_METHOD', 'smtp')|" \
+        "$IMAP_CONFIG_FILE"
+
+    if [ "$IMAP_SMTP_AUTH" = true ]
+    then
+        echo "IMAP SMTP auth enabled"
+        sed -i \
+            -e "s|imap_smtp_params = array()|imap_smtp_params = array('host'=>'${IMAP_SMTP_SERVER}','port'=>${IMAP_SMTP_PORT},'auth'=>true,'username'=>'${IMAP_SMTP_USERNAME}','password'=>'${IMAP_SMTP_PASSWORD}')|" \
+            "$IMAP_CONFIG_FILE"
+    else
+        echo "IMAP SMTP auth not enabled"
+        sed -i \
+            -e "s|imap_smtp_params = array()|imap_smtp_params = array('host'=>'${IMAP_SMTP_SERVER}','port'=>${IMAP_SMTP_PORT},'auth'=>false)|" \
+            "$IMAP_CONFIG_FILE"
+    fi
+else
+    echo "IMAP SMTP not enabled"
+fi
 
 if [ "$LDAP_ENABLED" = true ]
 then
